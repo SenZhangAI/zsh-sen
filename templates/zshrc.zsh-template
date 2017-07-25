@@ -4,21 +4,20 @@ export ZSH=/home/Sen/.zsh-sen
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
+# load the path files, except zsh-syntax-highlighting
+for file in ${${(M)config_files:#*/path.zsh}:#*/zsh-syntax-highlighting/*}
 do
   source $file
 done
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+# load everything but the path and completion files and zsh-syntax-highlighting
+for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/zsh-syntax-highlighting/*}
 do
   source $file
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}

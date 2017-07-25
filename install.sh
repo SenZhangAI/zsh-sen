@@ -23,6 +23,9 @@ backup_file $zsh_rc
 
 cp $current_dir/templates/zshrc.zsh-template $zsh_rc 2>/dev/null
 
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-sen/zsh-syntax-highlighting
+cat ~/.zsh-sen/templates/zsh-syntax-highlighting.zsh-template >> $zsh_rc
+
 system_is() {
   test=$(uname -a 2>/dev/null | grep -i $1)
   if [ -z "$test" ]; then
