@@ -1,5 +1,5 @@
 # Path to your zsh config installation.
-export ZSH=/home/Sen/.zsh-sen
+export ZSH=$HOME/.zsh-sen
 # all of our zsh files
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)

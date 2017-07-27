@@ -1,5 +1,5 @@
 
-source ~/.zsh-sen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ZSH_HIGHLIGHT_STYLES[globbing]='none'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
