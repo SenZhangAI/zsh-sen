@@ -3,6 +3,10 @@
 # set dir
 current_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+if [ ! -d $current_dir/cache ]; then
+  mkdir $current_dir/cache
+fi
+
 zsh_rc=~/.zshrc
 
 backup_file() {
@@ -23,8 +27,10 @@ backup_file $zsh_rc
 
 cp $current_dir/templates/zshrc.zsh-template $zsh_rc 2>/dev/null
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-sen/zsh-syntax-highlighting
-cat ~/.zsh-sen/templates/zsh-syntax-highlighting.zsh-template >> $zsh_rc
+if [ ! -d $current_dir/zsh-syntax-highlighting ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $current_dir/zsh-syntax-highlighting
+fi
+cat $current_dir/templates/zsh-syntax-highlighting.zsh-template >> $zsh_rc
 
 system_is() {
   test=$(uname -a 2>/dev/null | grep -i $1)
@@ -34,3 +40,5 @@ system_is() {
     return 0
   fi
 }
+
+echo "Install finished, enjoy it :)"
